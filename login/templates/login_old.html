@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingresa al sistema</title>
+  <link rel="icon" href="{% static 'img/plantilla/icono-negro.png' %}">
+  <!--
+    ===============================
+    PLUGINS DE CSS
+    ===============================
+  -->
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="{% static 'plugins/bootstrap/dist/css/bootstrap.min.css' %}">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'css/font-awesome/css/font-awesome.min.css' %}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="{% static 'css/ionicons/ionicons.min.css' %}">
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'plugins/adminlte/dist/css/AdminLTE.css' %}">
+
+  <!-- AdminLTE Skins -->
+  <link rel="stylesheet" href="{% static 'plugins/adminlte/dist/css/skins/_all-skins.min.css' %}">
+
+  <!-- Google Font -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{% static 'plugins/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
+
+  <link rel="stylesheet" href="{% static 'plugins/datatables.net-bs/css/responsive.bootstrap.min.css' %}">
+
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="{% static 'plugins/iCheck/all.css' %}">
+
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="{% static 'plugins/bootstrap-daterangepicker/daterangepicker.css' %}">
+
+  <!-- Morris chart -->
+  <link rel="stylesheet" href="{% static 'plugins/morris.js/morris.css' %}">
+  <!--<link rel="stylesheet" href="{% static 'dist/css/adminlte.css' %}">
+  <link rel="stylesheet" href="{% static 'dist/css/alt/AdminLTE-without-plugins.min.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">-->
+
+  <!--
+    ===============================
+    PLUGINS DE JAVASCRIPT
+    ===============================
+  -->
+  <!-- jQuery 3 -->
+  <script src="{% static 'plugins/jquery/dist/jquery.min.js' %}"></script>
+
+  <!-- Bootstrap 3.3.7 -->
+  <script src="{% static 'plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+  <!-- FastClick -->
+  <script src="{% static 'plugins/fastclick/lib/fastclick.js' %}"></script>
+
+  <!-- AdminLTE App -->
+  <script src="{% static 'plugins/adminlte/dist/js/adminlte.min.js' %}"></script>
+
+  <!-- DataTables -->
+  <script src="{% static 'plugins/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables.net-bs/js/dataTables.responsive.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables.net-bs/js/responsive.bootstrap.min.js' %}"></script>
+
+  <!-- SweetAlert 2 -->
+  <script src="{% static 'plugins/sweetalert2/sweetalert2.all.js' %}"></script>
+  <!-- By default SweetAlert2 doesn't support IE. To enable IE 11 support, include Promise polyfill:-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+  <!-- iCheck 1.0.1 -->
+  <script src="{% static 'plugins/iCheck/icheck.min.js' %}"></script>
+
+  <!-- InputMask -->
+  <script src="{% static 'plugins/input-mask/jquery.inputmask.js' %}"></script>
+  <script src="{% static 'plugins/input-mask/jquery.inputmask.date.extensions.js' %}"></script>
+  <script src="{% static 'plugins/input-mask/jquery.inputmask.extensions.js' %}"></script>
+
+  <!-- jQuery Number -->
+  <script src="{% static 'plugins/jqueryNumber/jquerynumber.min.js' %}"></script>
+
+  <!-- daterangepicker http://www.daterangepicker.com/-->
+  <script src="{% static 'plugins/moment/min/moment.min.js' %}"></script>
+  <script src="{% static 'plugins/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+
+  <!-- Morris.js charts http://morrisjs.github.io/morris.js/-->
+  <script src="{% static 'plugins/raphael/raphael.min.js' %}"></script>
+  <script src="{% static 'plugins/morris.js/morris.min.js' %}"></script>
+
+  <!-- ChartJS http://www.chartjs.org/-->
+  <script src="{% static 'plugins/chart.js/Chart.js' %}"></script>
+
+</head>
+
+<body>
+  <div id="back"></div>
+
+  <div class="login-box">
+
+    <div class="login-logo">
+      <img src="{% static 'img/plantilla/logo-blanco-bloque.png' %}" class="img-responsive"
+        style="padding:30px 100px 0px 100px">
+    </div>
+
+    <div class="login-box-body">
+
+      <p class="login-box-msg">Ingresar al sistema</p>
+
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control" placeholder="Usuario" name="ingUsuario" required>
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback">
+          <input type="password" class="form-control" placeholder="Contraseña" name="ingPassword" required>
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-4">
+            <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 5px;">
+          {% if error %}
+          <div class="alert alert-danger">
+            {{ error }}
+          </div>
+          {% endif %}
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+</body>
+
+</html>

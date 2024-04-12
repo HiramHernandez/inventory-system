@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="icon" href="{% static 'img/plantilla/icono-negro.png' %}">
+
+  <link rel="stylesheet" href="{% static 'plugins/bootstrap/dist/css/bootstrap.min.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/font-awesome/css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/ionicons/ionicons.min.css' %}">
+
+  <link rel="stylesheet" href="{% static 'plugins/adminlte/dist/css/AdminLTE.css' %}">
+
+  <link rel="stylesheet" href="{% static 'plugins/adminlte/dist/css/skins/_all-skins.min.css' %}">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  <script src="{% static 'plugins/jquery/dist/jquery.min.js' %}"></script>
+
+  <script src="{% static 'plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+  <script src="{% static 'plugins/fastclick/lib/fastclick.js' %}"></script>
+
+  <script src="{% static 'plugins/adminlte/dist/js/adminlte.min.js' %}"></script>
+
+  {% block scripts %}{% endblock %}
+</head>
+<body>
+  
+  {% block content %}{% endblock %}
+
+  {% block body_scripts %}{% endblock %}
+
+</body>
+</html>

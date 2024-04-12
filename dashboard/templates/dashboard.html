@@ -1,0 +1,79 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Inventory System{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+
+    <section class="content-header">
+      <h1>       
+        Tablero        
+        <small>Panel de Control</small>
+      </h1>
+  
+      <ol class="breadcrumb">
+        
+        <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        
+        <li class="active">Tablero</li>
+      
+      </ol>
+  
+    </section>
+  
+    <section class="content">
+  
+      <div class="row">
+        
+        {% include 'totales.html' %}
+  
+      </div> <!-- cajas superiores -->
+  
+       <div class="row">
+         
+          <div class="col-lg-12">
+            {% include 'grafico_ventas.html' %}
+          </div><!-- gráfico de ventas -->
+  
+          <div class="col-lg-6">
+            <!-- validar si el rol es administrador -->
+            {% include 'productos_mas_vendidos.html' %}
+          </div>
+  
+           <div class="col-lg-6">
+            <!-- validar si es administrador -->
+            {% include 'productos_recien_agregados.html' %}     
+          </div>
+  
+           <div class="col-lg-12">
+             <!-- Validar si el perfil es Especial o Vendedor -->
+            <?php
+  
+            if($_SESSION["perfil"] =="Especial" || $_SESSION["perfil"] =="Vendedor"){
+  
+               echo '<div class="box box-success">
+  
+               <div class="box-header">
+  
+               <h1>Bienvenid@ ' .$_SESSION["nombre"].'</h1>
+  
+               </div>
+  
+               </div>';
+  
+            }
+  
+            ?>
+  
+           </div>
+  
+       </div>
+  
+    </section>
+   
+  </div>
+{% endblock %}
+
+{% block body_scripts %}
+{% endblock %}
