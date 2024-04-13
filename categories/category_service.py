@@ -17,10 +17,14 @@ class CategoryService:
             CategoryService.__instance = CategoryService()
         return CategoryService.__instance
 
+    # retonar success, objeto
     def crear_categoria(self, nombre):
-        categoria = Category(categoria=nombre)
-        categoria.save()
-        return categoria
+        try:
+            categoria = Category(categoria=nombre)
+            categoria.save()
+            return (True, categoria)
+        except Exception:
+            return (False, None)
 
     def fetch(self):
         try:
@@ -39,9 +43,9 @@ class CategoryService:
             categoria = Category.objects.get(pk=id)
             categoria.categoria = nombre
             categoria.save()
-            return categoria
-        except Category.DoesNotExist:
-            return None
+            return (True, categoria)
+        except Exception:
+            return (False, None)
 
     def eliminar_categoria(self, id):
         try:
