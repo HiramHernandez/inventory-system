@@ -4,8 +4,9 @@ $(document).ready(function () {
         var nombreCategoria = $(this).data('nombre');; // Aquí puedes obtener el nombre de la categoría mediante una solicitud AJAX
         $('#editarCategoria').val(nombreCategoria);
         $('#idCategoria').val(categoriaId);
-        var formAction = "{% url 'edit-category' 0 %}".replace('0', categoriaId);
-        $('#editCategoryForm').attr('action', formAction);
+        
+        let editCategoryUrl = `edit-category/${categoriaId}/`;
+        $('#editCategoryForm').attr('action', editCategoryUrl);
 
     });
 });
