@@ -8,28 +8,95 @@
   <title>{% block title %}{% endblock %}</title>
   <link rel="icon" href="{% static 'img/plantilla/icono-negro.png' %}">
 
+  <!--=====================================
+  PLUGINS DE CSS
+  ======================================-->
+  <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{% static 'plugins/bootstrap/dist/css/bootstrap.min.css' %}">
 
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="{% static 'css/font-awesome/css/font-awesome.min.css' %}">
+  <!-- Ionicons -->
   <link rel="stylesheet" href="{% static 'css/ionicons/ionicons.min.css' %}">
 
+  <!-- Theme style -->
   <link rel="stylesheet" href="{% static 'plugins/adminlte/dist/css/AdminLTE.css' %}">
 
+  <!-- AdminLTE Skins -->
   <link rel="stylesheet" href="{% static 'plugins/adminlte/dist/css/skins/_all-skins.min.css' %}">
+  
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- DataTables -->
 
+  <link rel="stylesheet" href="{% static 'plugins/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/datatables.net-bs/css/responsive.bootstrap.min.css' %}">
+
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="{% static 'plugins/iCheck/all.css' %}">
+
+   <!-- Daterange picker -->
+  <link rel="stylesheet" href="{% static 'plugins/bootstrap-daterangepicker/daterangepicker.css' %}">
+
+  <!-- Morris chart -->
+  <link rel="stylesheet" href="{% static 'plugins/morris.js/morris.css' %}">
+
+  <!--=====================================
+  PLUGINS DE JAVASCRIPT
+  ======================================-->
+
+  <!-- jQuery 3 -->
   <script src="{% static 'plugins/jquery/dist/jquery.min.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 
+
+  <!-- Bootstrap 3.3.7 -->
   <script src="{% static 'plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 
+  <!-- FastClick -->
   <script src="{% static 'plugins/fastclick/lib/fastclick.js' %}"></script>
 
+  <!-- AdminLTE App -->
   <script src="{% static 'plugins/adminlte/dist/js/adminlte.min.js' %}"></script>
 
+  <!-- DataTables -->
+  <script src="{% static 'plugins/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables.net-bs/js/dataTables.bootstrap.min.js'  %}"></script>
+  <script src="{% static 'plugins/datatables.net-bs/js/dataTables.responsive.min.js'  %}"></script>
+  <script src="{% static 'plugins/datatables.net-bs/js/responsive.bootstrap.min.js' %}"></script>
+
+
+  <!-- SweetAlert 2 -->
   <script src="{% static 'plugins/sweetalert2/sweetalert2.all.js' %}"></script>
 
+  <!-- By default SweetAlert2 doesn't support IE. To enable IE 11 support, include Promise polyfill:-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+  <!-- iCheck 1.0.1 -->
+  <script src="{% static 'plugins/iCheck/icheck.min.js' %}"></script>
+
+  <!-- InputMask -->
+  <script src="{% static 'plugins/input-mask/jquery.inputmask.js' %}"></script>
+  <script src="{% static 'plugins/input-mask/jquery.inputmask.date.extensions.js' %}"></script>
+  <script src="{% static 'plugins/input-mask/jquery.inputmask.extensions.js' %}"></script>
+
+  <!-- jQuery Number -->
+  <script src="{% static 'plugins/jqueryNumber/jquerynumber.min.js' %}"></script>
+
+  <!-- jdaterangepicker http://www.daterangepicker.com/-- -->
+  <script src="{% static 'plugins/moment/min/moment.min.js' %}"></script>
+  <script src="{% static 'plugins/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+
+  <!-- Morris.js charts http://morrisjs.github.io/morris.js/-->
+  <script src="{% static 'plugins/raphael/raphael.min.js' %}"></script>
+  <script src="{% static 'plugins/morris.js/morris.min.js' %}"></script>
+
+  <!-- ChartJS http://www.chartjs.org/-->
+  <script src="{% static 'plugins/Chart.js/Chart.js' %}"></script>
+
+  <script src="{% static 'js/plantilla.js' %}"></script>
+  <script src="{% static 'js/categories/categories.js' %}"></script>
   {% block scripts %}{% endblock %}
 </head>
 
@@ -37,9 +104,9 @@
   {% include 'barra_navegacion.html' %}
   {% include 'menu.html' %}
   {% block content %}
-  
- 
-  
+
+
+
   {% endblock %}
 
   {% block body_scripts %}{% endblock %}
