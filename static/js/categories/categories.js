@@ -1,3 +1,4 @@
+console.log("Hola entro al script categories.js")
 $(document).ready(function () {
     $('.btnEditarCategoria').click(function () {
         var categoriaId = $(this).data('id');
