@@ -1,4 +1,4 @@
-from django.db import models
+from django.db.models import Count
 from .models import Category
 
 class CategoryService:
@@ -54,3 +54,7 @@ class CategoryService:
             return True
         except Category.DoesNotExist:
             return False
+        
+    def total_categories(self):
+        return Category.objects.aggregate(total=Count('id'))['total']
+
