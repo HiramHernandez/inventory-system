@@ -24,9 +24,10 @@
 
   <!-- AdminLTE Skins -->
   <link rel="stylesheet" href="{% static 'plugins/adminlte/dist/css/skins/_all-skins.min.css' %}">
-  
+
   <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
   <!-- DataTables -->
 
@@ -36,7 +37,7 @@
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="{% static 'plugins/iCheck/all.css' %}">
 
-   <!-- Daterange picker -->
+  <!-- Daterange picker -->
   <link rel="stylesheet" href="{% static 'plugins/bootstrap-daterangepicker/daterangepicker.css' %}">
 
   <!-- Morris chart -->
@@ -48,9 +49,7 @@
 
   <!-- jQuery 3 -->
   <script src="{% static 'plugins/jquery/dist/jquery.min.js' %}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
-
-
+  
   <!-- Bootstrap 3.3.7 -->
   <script src="{% static 'plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 
@@ -95,8 +94,16 @@
   <!-- ChartJS http://www.chartjs.org/-->
   <script src="{% static 'plugins/Chart.js/Chart.js' %}"></script>
 
-  <script src="{% static 'js/plantilla.js' %}"></script>
+  <!--<script src="{% static 'js/plantilla.js' %}"></script>-->
   <script src="{% static 'js/categories/categories.js' %}"></script>
+  
+  <!-- CSS de DataTables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- DataTables -->
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+  <script src="{% static 'js/table.js' %}"></script>
   {% block scripts %}{% endblock %}
 </head>
 
