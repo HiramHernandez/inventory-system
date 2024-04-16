@@ -3,19 +3,12 @@ from .models import Category
 
 class CategoryService:
 
-    __instance = None
+    _instance = None
 
-    def __init__(self):
-        if CategoryService.__instance is not None:
-            pass
-            #raise Exception("Ya existe una instancia de CategoriaService")
-        CategoryService.__instance = self
-
-    @staticmethod
-    def get_instance():
-        if CategoryService.__instance is None:
-            CategoryService.__instance = CategoryService()
-        return CategoryService.__instance
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls, *args, **kwargs)
+        return cls._instance
 
     # retonar success, objeto
     def crear_categoria(self, nombre):

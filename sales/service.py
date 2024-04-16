@@ -4,13 +4,12 @@ from .models import Sale
 
 class SaleService:
     
-    __instance = None
+    _instance = None
 
-    def __init__(self):
-        if SaleService.__instance is not None:
-            pass
-            #raise Exception("Ya existe una instancia de CategoriaService")
-        SaleService.__instance = self
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls, *args, **kwargs)
+        return cls._instance
 
     def get_total(self):
         return Sale.objects.aggregate(total=Sum('neto'))['total']
