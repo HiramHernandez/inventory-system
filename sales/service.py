@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Sum, Q, Count
 from django.db.models.expressions import Value, F, Case, When
+from django.core.cache import cache
 from .models import Sale
 from utils.format import str_to_date, transform_venta_por_dia
 
@@ -34,10 +35,17 @@ class SaleService:
                 raise ValueError("Lo sentimos ocurrido un error inesperado")  
         return ventas
     
-    def total_ventas_por_dia(self):
-        ventas_por_dia = Sale.objects.values('fecha__date') \
-            .annotate(ventas_por_dia=Count('id'), total_por_dia=Sum('total')) \
-            .order_by('fecha__date') \
-            .all()    
-        ventas = [transform_venta_por_dia(venta) for venta in ventas_por_dia]
-        return ventas
+    def total_ventas_por_dia(self, avoid_cache):
+        cache_key = 'total_ventas_por_dia'
+        ventas_por_dia_cached = cache.get(cache_key)
+        not_using_cache = ventas_por_dia_cached is None or avoid_cache
+        if not_using_cache:
+            ventas_por_dia = Sale.objects.values('fecha__date') \
+                .annotate(ventas_por_dia=Count('id'), total_por_dia=Sum('total')) \
+                .order_by('fecha__date') \
+                .all()
+            result_serializeds = [transform_venta_por_dia(venta) for venta in ventas_por_dia]
+            cache.set(cache_key, result_serializeds, timeout=60 * 60)
+            return result_serializeds
+
+        return ventas_por_dia_cached
