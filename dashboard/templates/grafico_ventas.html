@@ -21,14 +21,14 @@
 </div>
 
 <script>
-  let ventasPorDiaUrl = 'dashboard/ventas-por-dia';
-  console.log("Un nuevo códigoo!!!!!!!!!!!");
+  let ventasPorDiaUrl = '/dashboard/ventas-por-dia';
   $(document).ready(function () {
     // Solicitar datos de la API usando AJAX
     $.getJSON(ventasPorDiaUrl, function (data) {
       // Procesar los datos obtenidos
       var datosGrafico = []; // Arreglo para almacenar los puntos del gráfico
       for (var i = 0; i < data.length; i++) {
+        console.log(data[i]);
         var punto = {
           fecha__date: data[i].fecha__date,
           ventas_por_dia: data[i].ventas_por_dia,
@@ -43,38 +43,22 @@
         data: datosGrafico,
         xkey: 'fecha__date',
         ykeys: ['total_por_dia'],
-        labels: ['Valor']
+        labels: ['Valor'],
+        axes: true, // Habilitar ejes (necesario para la configuración)
+        grid: true, // Habilitar cuadrícula
+        yaxes: [
+          {
+            grid: true, // Habilitar cuadrícula en el eje Y
+            beginAtZero: false, // Permitir que el eje Y comience en un valor distinto de cero
+            // Opcional: Especificar el rango máximo del eje Y (en este caso, lo configuraremos dinámicamente)
+            max: function (data) {
+              return Math.max(...data.map(function (row) { return row.y; }));
+            }
+          }
+        ]
       });
     });
   });
-  /*new Morris.Line({
-    // ID of the element in which to draw the chart.
-    element: 'line-chart-ventas',
-    // Chart data records -- each entry in this array corresponds to a point on
-    // the chart.
-    data: [
-      { fecha__date: "2017-8-15", ventas_por_dia: 1, total_por_dia: 9846.0595703125 },
-      { fecha__date: "2017-11-30", ventas_por_dia: 1, total_por_dia: 24123.69921875 },
-      { fecha__date: "2017-12-7", ventas_por_dia: 1, total_por_dia: 8013.4599609375 },
-      { fecha__date: "2017-12-25", ventas_por_dia: 3, total_por_dia: 33253.360595703125 },
-      { fecha__date: "2017-12-26", ventas_por_dia: 8, total_por_dia: 55227.900390625 },
-      { fecha__date: "2018-1-9", ventas_por_dia: 1, total_por_dia: 34219.6015625 },
-      { fecha__date: "2018-1-18", ventas_por_dia: 1, total_por_dia: 9462.8798828125 },
-      { fecha__date: "2018-1-25", ventas_por_dia: 1, total_por_dia: 34219.6015625 },
-      { fecha__date: "2018-1-26", ventas_por_dia: 1, total_por_dia: 21191.5 },
-      { fecha__date: "2018-2-1", ventas_por_dia: 1, total_por_dia: 22848.0 },
-      { fecha__date: "2018-2-2", ventas_por_dia: 1, total_por_dia: 16193.5 },
-      { fecha__date: "2018-2-6", ventas_por_dia: 1, total_por_dia: 1647.800048828125 },
-      { fecha__date: "2024-4-9", ventas_por_dia: 1, total_por_dia: 2173.5 },
-    ],
-    // The name of the data record attribute that contains x-values.
-    xkey: 'fecha__date',
-    // A list of names of data record attributes that contain y-values.
-    ykeys: ['total_por_dia'],
-    // Labels for the ykeys -- will be displayed when you hover over the
-    // chart.
-    labels: ['Value']
-  });*/
 </script>
 {% endblock %}
 
