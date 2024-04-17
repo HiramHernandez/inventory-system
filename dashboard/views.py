@@ -1,7 +1,7 @@
 import locale
 import json
 from datetime import date
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render
 from sales.service import SaleService
 from categories.category_service import CategoryService
@@ -36,8 +36,19 @@ def show_dashboard(request):
     return render(request, 'dashboard.html', context=context)
 
 
-def ventas_por_dia(request):
+def ventas_por_dia(request: HttpRequest):
+    query_param = request.GET.get('avoid-cache')
+    valid_keys={'true': True, 'false': False}
+    keys = tuple(key.lower() for key in valid_keys.keys())
+    if query_param and query_param.lower() not in keys:
+        raise ValueError(f"Lo sentimos la query param {query_param} no es válida favor de usar true o false")
+
+    avoid_cache = False
+    match query_param in keys:
+        case True:
+            avoid_cache = valid_keys[query_param]
+     
     sale_service = SaleService()
-    json_data = json.dumps(sale_service.total_ventas_por_dia())
+    json_data = json.dumps(sale_service.total_ventas_por_dia(avoid_cache))
     return HttpResponse(json_data, content_type='application/json')
     
