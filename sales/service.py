@@ -38,9 +38,6 @@ class SaleService:
         ventas_por_dia = Sale.objects.values('fecha__date') \
             .annotate(ventas_por_dia=Count('id'), total_por_dia=Sum('total')) \
             .order_by('fecha__date') \
-            .all()
-        
-        #print(ventas_por_dia)
-        #print(dir(ventas_por_dia))
+            .all()    
         ventas = [transform_venta_por_dia(venta) for venta in ventas_por_dia]
         return ventas
