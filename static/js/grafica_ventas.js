@@ -1,4 +1,5 @@
-let ventasPorDiaUrl = '/dashboard/ventas-por-dia';
+let avoidCache = false
+let ventasPorDiaUrl = `/dashboard/ventas-por-dia?avoid-cache=${avoidCache}`;
 $(document).ready(function () {
     // Solicitar datos de la API usando AJAX
     $.getJSON(ventasPorDiaUrl, function (data) {
